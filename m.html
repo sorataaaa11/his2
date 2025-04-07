@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+   <style>
+    body{
+        background-color: limegreen;
+    }
+    .q{
+        position: absolute;
+        top: 0;
+        left:0;
+        right: 0;
+        height: 50vh;
+        background-color: aqua;
+        border: none;
+        font-size: 5vh;
+        color: black;
+    }
+    .b{
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        border: black;
+        font-size: 29px;
+        color: black;
+    }
+    .a{
+        position: absolute;
+        bottom:  0;
+        left:0;
+        right: 0;
+        height: 50vh;
+        background-color:green ;
+        border: none;
+        font-size: 5vh;
+        color: black;
+        opacity: 0;
+    }
+   </style>
+</head>
+<body>
+    <button id='q' class="q"></button>
+    <button id="a" class="a"></button>
+    <button id="b" class="b">back</button>
+    <script>
+       function shuffleQnA(questions, answers) {
+    if (questions.length !== answers.length) {
+        throw new Error("Questions and answers must be the same length.");
+    }
+
+    // Create an array of indices
+    const indices = questions.map((_, i) => i);
+
+    // Shuffle the indices
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    // Apply the shuffled indices to questions and answers
+    const shuffledQuestions = indices.map(i => questions[i]);
+    const shuffledAnswers = indices.map(i => answers[i]);
+
+    return { shuffledQuestions, shuffledAnswers };
+}
+
+
+        n = 0
+        const q = ['من 1200 قم - 1م', '1 -1000', '1000 - 1400', '1700-1800', '1800 - 1825', '1875 - 1900', '1900 - 1925', '1925 - 1950', '1950 - 1975', '1975 - 1990', '1990 - الأن ', 'اول مهندس مدنى هو ', 'اول مهندس كهرباء', 'اول مهندس ميكانيكى', 'اول مهندس طياران', 'اول من انشأ محرك بحث']
+        const a = ['تحسين جودة الحديد المطاوع', 'اختراع البارود', 'وضع فيبوناتشى اول رمز غربى فى الرياضيات', 'الثورة الصناعية فى اوروبا - برائة اختراع جمس وات لأول محرك بخارى', 'اختراع الألة الكتابية', 'اختراع المصباح الكهربى و الفونوجراف من توماس اديسون', 'طورت شركة فورد اول محركات الديزل للجرارات ', 'استخدام اول قنبلة زرية - اختراع الترانزيزتور', 'ادخال  اجهزة الكمبيوتر للسوق فى عام 1960 - وضع اول قمر صناعى للاتصالات telstar ', 'اول عملية زراعة قلب صناعى بنجاح', 'gps', 'امحوتب ', 'وليام جلبرت', 'توماس نيوكمن', 'جورج كايلى', 'امتاجى']
+        const { shuffledQuestions, shuffledAnswers } = shuffleQnA(q, a);
+
+
+        document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('b').addEventListener("click",()=>{
+            n -= 1
+            document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('a').style.opacity = '0'
+        })
+        document.getElementById('q').addEventListener("click",()=>{
+            n += 1
+            document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('a').style.opacity = '0'
+        })
+        document.getElementById('a').addEventListener("click",()=>{
+            document.getElementById('a').style.opacity = '1'
+        })
+        
+    </script>
+</body>
+</html>
